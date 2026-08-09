@@ -1,0 +1,73 @@
+{
+  "name": "cf-fetcher-official",
+  "displayName": "cf-fetcher-official",
+  "description": "CF Fetcher",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.125.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cf-fetcher.fetchContest",
+        "title": "Codeforces: Fetch Contest"
+      },
+      {
+        "command": "cf-fetcher.codeNow",
+        "title": "Codeforces: Code Now (Trigger CPH)",
+        "enablement": "false"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "cf-fetcher.fetchContest",
+        "key": "ctrl+alt+c",
+        "mac": "cmd+alt+c"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "cf-fetcher.cfPreview",
+        "displayName": "Codeforces Problem Preview",
+        "selector": [
+          {
+            "filenamePattern": "*.cf"
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "@types/vscode": "^1.125.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0",
+    "eslint": "^10.5.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1"
+  },
+  "overrides": {
+    "diff": "^8.0.4",
+    "serialize-javascript": "^7.0.6"
+  },
+  "dependencies": {
+    "axios": "^1.19.0",
+    "cheerio": "^1.2.0"
+  }
+}
