@@ -176,7 +176,7 @@ class CfEditorProvider implements vscode.CustomTextEditorProvider {
             cphPayload = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
         }
 
-        webviewPanel.webview.html = getWebviewHtml(htmlContent, JSON.stringify(cphPayload));
+        webviewPanel.webview.html = getWebviewHtml(webviewPanel.webview, this.context.extensionUri, htmlContent, JSON.stringify(cphPayload));
 
         webviewPanel.webview.onDidReceiveMessage(e => {
             if (e.type === 'codeNow') {
