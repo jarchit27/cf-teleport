@@ -7,11 +7,6 @@ import { getWebviewHtml } from './webview';
 let server: http.Server | undefined;
 
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('cf-fetcher.fetchContest', async () => {
-        vscode.window.showInformationMessage("Codeforces Companion server is running! Please click the Chrome Extension button when on the 'All Problems' page.");
-    });
-    context.subscriptions.push(disposable);
-
     // Register a command to trigger CPH
     let codeNowCmd = vscode.commands.registerCommand('cf-fetcher.codeNow', async (payload: any) => {
         await triggerCPH(payload);
@@ -26,10 +21,10 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // Start local server
-    startServer(context);
+    startServer();
 }
 
-function startServer(context: vscode.ExtensionContext) {
+function startServer() {
     server = http.createServer((req, res) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST');

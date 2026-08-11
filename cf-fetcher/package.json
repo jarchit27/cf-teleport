@@ -16,20 +16,9 @@
   "contributes": {
     "commands": [
       {
-        "command": "cf-fetcher.fetchContest",
-        "title": "Codeforces: Fetch Contest"
-      },
-      {
         "command": "cf-fetcher.codeNow",
         "title": "Codeforces: Code Now (Trigger CPH)",
         "enablement": "false"
-      }
-    ],
-    "keybindings": [
-      {
-        "command": "cf-fetcher.fetchContest",
-        "key": "ctrl+alt+c",
-        "mac": "cmd+alt+c"
       }
     ],
     "customEditors": [
