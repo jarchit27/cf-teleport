@@ -2,11 +2,12 @@ import * as vscode from 'vscode';
 import { parseCodeforcesDescription } from './htmlParser';
 import { markdownEngine } from './markdownEngine';
 
+import * as crypto from 'crypto';
+
 export function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri, statementHtml: string, payloadStr: string): string {
     const payload = JSON.parse(payloadStr || "{}");
     const description = parseCodeforcesDescription(statementHtml, payload);
     
-
     // Build the Markdown-like HTML layout (similar to Wiroxa)
     const head = `<h1 class="problem-title">\n<a href="${description.url}" target="_blank">${description.title}</a>\n</h1>`;
     const info = `<p><strong>Rating:</strong> ${description.rating}</p>`;
@@ -37,28 +38,28 @@ export function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri
         problemBody
     ].join("\n");
 
-    // We don't strictly need to pass it through markdownEngine if it's already HTML,
-    // but doing so ensures it gets wrapped correctly and any markdown-like elements are processed.
     const renderedBody = markdownEngine.render(fullHtmlBody);
 
-        const styles = [
-            markdownEngine.getStyles(webview),
-            `<link rel="stylesheet" type="text/css" href="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "styles", "style.css"))}">`,
-            `<link rel="stylesheet" type="text/css" href="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "styles", "katex.min.css"))}">`
-        ].join('\n');
+    const nonce = crypto.randomBytes(16).toString('base64');
 
-        const scripts = [
-            `<script src="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "scripts", "katex.min.js"))}"></script>`,
-            `<script src="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "scripts", "auto-render.min.js"))}"></script>`,
-            `<script src="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "scripts", "clipboard.min.js"))}"></script>`
-        ].join('\n');
+    const styles = [
+        markdownEngine.getStyles(webview),
+        `<link rel="stylesheet" type="text/css" href="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "styles", "style.css"))}">`,
+        `<link rel="stylesheet" type="text/css" href="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "styles", "katex.min.css"))}">`
+    ].join('\n');
+
+    const scripts = [
+        `<script nonce="${nonce}" src="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "scripts", "katex.min.js"))}"></script>`,
+        `<script nonce="${nonce}" src="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "scripts", "auto-render.min.js"))}"></script>`,
+        `<script nonce="${nonce}" src="${webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "public", "scripts", "clipboard.min.js"))}"></script>`
+    ].join('\n');
 
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https:; script-src ${webview.cspSource} 'unsafe-inline' 'unsafe-eval'; style-src ${webview.cspSource} 'unsafe-inline' https:; font-src ${webview.cspSource} https: data:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline' https:; font-src ${webview.cspSource} https: data:;">
         
         ${styles}
 
@@ -98,17 +99,19 @@ export function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri
     <body class="vscode-body">
         ${renderedBody}
 
-        <button id="cf-code-now" onclick="codeNow()">
+        <button id="cf-code-now">
             Code Now &rarr; CPH
         </button>
 
-        <script>
+        <script nonce="${nonce}">
             const vscode = acquireVsCodeApi();
             const payload = ${payloadStr || "{}"};
 
             function codeNow() {
                 vscode.postMessage({ type: 'codeNow', payload: payload });
             }
+            
+            document.getElementById('cf-code-now').addEventListener('click', codeNow);
 
             document.addEventListener("DOMContentLoaded", function () {
                 document.querySelectorAll(".input, .output").forEach((block, index) => {
