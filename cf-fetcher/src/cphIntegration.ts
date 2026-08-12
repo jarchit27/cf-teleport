@@ -2,7 +2,8 @@ import * as vscode from 'vscode';
 import * as http from 'http';
 
 export async function triggerCPH(payload: any) {
-    const ports = [10043, 10045, 27121];
+    // We check all standard Competitive Companion ports (except 10044 which is our own server)
+    const ports = [27121, 10041, 10042, 10043, 10045, 4244, 6174, 8989];
     let success = false;
     
     for (const port of ports) {
@@ -41,6 +42,6 @@ export async function triggerCPH(payload: any) {
     }
 
     if (!success) {
-        vscode.window.showErrorMessage("Failed to reach CPH on ports 10043, 10045, or 27121. Is the CPH extension running?");
+        vscode.window.showErrorMessage(`Failed to reach CPH on any standard port (${ports.join(', ')}). Is the CPH extension running?`);
     }
 }

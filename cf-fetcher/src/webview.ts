@@ -93,8 +93,6 @@ export function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri
             }
         </style>
         ${scripts}
-        </style>
-        ${scripts}
     </head>
     <body class="vscode-body">
         ${renderedBody}

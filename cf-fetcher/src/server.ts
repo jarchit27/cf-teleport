@@ -38,9 +38,34 @@ export function startServer() {
         }
     });
 
-    server.listen(10044, '127.0.0.1', () => {
-        console.log('Codeforces Receiver listening on port 10044');
-    });
+    const serverPorts = [10044, 10042, 10041, 4244, 6174, 8989];
+    
+    function tryListen(index: number) {
+        if (index >= serverPorts.length) {
+            vscode.window.showErrorMessage("CF Fetcher: All standard ports are in use. Cannot start local server.");
+            return;
+        }
+
+        // Remove previous listeners to avoid memory leaks on retry
+        server?.removeAllListeners('error');
+        server?.removeAllListeners('listening');
+
+        server?.on('error', (e: any) => {
+            if (e.code === 'EADDRINUSE') {
+                tryListen(index + 1);
+            } else {
+                console.error('Server error:', e);
+            }
+        });
+
+        server?.on('listening', () => {
+            console.log(`Codeforces Receiver listening on port ${serverPorts[index]}`);
+        });
+
+        server?.listen(serverPorts[index], '127.0.0.1');
+    }
+
+    tryListen(0);
 }
 
 export function stopServer() {
