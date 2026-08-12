@@ -5,14 +5,14 @@ import { startServer, stopServer } from './server';
 
 export function activate(context: vscode.ExtensionContext) {
     // Register a command to trigger CPH
-    let codeNowCmd = vscode.commands.registerCommand('cf-fetcher.codeNow', async (payload: any) => {
+    let codeNowCmd = vscode.commands.registerCommand('cf-teleport.codeNow', async (payload: any) => {
         await triggerCPH(payload);
     });
     context.subscriptions.push(codeNowCmd);
 
     // Register Webview provider for .cf files
     context.subscriptions.push(
-        vscode.window.registerCustomEditorProvider('cf-fetcher.cfPreview', new CfEditorProvider(context), {
+        vscode.window.registerCustomEditorProvider('cf-teleport.cfPreview', new CfEditorProvider(context), {
             webviewOptions: { retainContextWhenHidden: true }
         })
     );

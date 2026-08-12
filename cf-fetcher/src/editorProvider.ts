@@ -29,7 +29,7 @@ export class CfEditorProvider implements vscode.CustomTextEditorProvider {
 
         webviewPanel.webview.onDidReceiveMessage(e => {
             if (e.type === 'codeNow') {
-                vscode.commands.executeCommand('cf-fetcher.codeNow', e.payload);
+                vscode.commands.executeCommand('cf-teleport.codeNow', e.payload);
             }
         });
     }

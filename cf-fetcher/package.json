@@ -1,7 +1,7 @@
 {
-  "name": "cf-fetcher-official",
-  "displayName": "cf-fetcher-official",
-  "description": "CF Fetcher",
+  "name": "cf-teleport",
+  "displayName": "CF Teleport",
+  "description": "CF Teleport",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.125.0"
@@ -16,14 +16,14 @@
   "contributes": {
     "commands": [
       {
-        "command": "cf-fetcher.codeNow",
+        "command": "cf-teleport.codeNow",
         "title": "Codeforces: Code Now (Trigger CPH)",
         "enablement": "false"
       }
     ],
     "customEditors": [
       {
-        "viewType": "cf-fetcher.cfPreview",
+        "viewType": "cf-teleport.cfPreview",
         "displayName": "Codeforces Problem Preview",
         "selector": [
           {
