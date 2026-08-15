@@ -22,8 +22,6 @@ A seamless developer tool bridging your web browser and code editor. Click a but
 - **VS Code Integration:** Automatically creates source code files and test cases in your active VS Code workspace.
 - **In-Editor Problem Preview:** Opens a beautifully formatted, split-pane Markdown preview of the Codeforces problem description right next to your code.
 - **CPH Ready:** Automatically triggers the Competitive Programming Helper (CPH) extension to run your test cases seamlessly.
-- **Robust Port Routing:** Enterprise-grade recursive fallback system guaranteeing zero port collisions.
-- **Offline Math Support:** Render equations offline with bundled KaTeX.
 
 ---
 
