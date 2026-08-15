@@ -1,6 +1,10 @@
 <div align="center">
 
+<<<<<<< HEAD
 <img src="cf-fetcher/icon.png" width="128" alt="CF Teleport Icon" />
+=======
+<img src="https://raw.githubusercontent.com/jarchit27/cf-teleport/main/cf-fetcher/icon.png" width="128" alt="CF Teleport Icon" />
+>>>>>>> 370af5ce5ea787d89e590452b2f2e6c5c79aa8f4
 
 # ⚡ CF Teleport
 
@@ -10,7 +14,11 @@ A seamless developer tool bridging your web browser and code editor. Click a but
 
 <br/>
 
+<<<<<<< HEAD
 ![CF Teleport Banner](assets/promo.png)
+=======
+![CF Teleport Banner](https://raw.githubusercontent.com/jarchit27/cf-teleport/main/assets/promo.png)
+>>>>>>> 370af5ce5ea787d89e590452b2f2e6c5c79aa8f4
 
 </div>
 
