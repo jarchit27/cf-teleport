@@ -1,10 +1,16 @@
 <div align="center">
-  
+
+<img src="https://raw.githubusercontent.com/jarchit27/cf-teleport/main/cf-fetcher/icon.png" width="128" alt="CF Teleport Icon" />
+
 # ⚡ CF Teleport
 
 **Instantly teleport Codeforces problems and test cases directly to your VS Code environment.**  
 
 A seamless developer tool bridging your web browser and code editor. Click a button on Codeforces, and watch as your VS Code instantly generates the problem files, downloads the sample test cases, and opens a split-pane problem preview.
+
+<br/>
+
+![CF Teleport Banner](https://raw.githubusercontent.com/jarchit27/cf-teleport/main/assets/promo.png)
 
 </div>
 
