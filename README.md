@@ -1,10 +1,16 @@
 <div align="center">
-  
+
+<img src="cf-fetcher/icon.png" width="128" alt="CF Teleport Icon" />
+
 # ⚡ CF Teleport
 
 **Instantly teleport Codeforces problems and test cases directly to your VS Code environment.**  
 
 A seamless developer tool bridging your web browser and code editor. Click a button on Codeforces, and watch as your VS Code instantly generates the problem files, downloads the sample test cases, and opens a split-pane problem preview.
+
+<br/>
+
+![CF Teleport Banner](assets/promo.png)
 
 </div>
 
@@ -105,21 +111,6 @@ Because this tool bridges two environments, you must run both components.
 2. Run `npm install` to install dependencies.
 3. Press `F5` to open a new Extension Development Host window.
 4. (Optional) Run `npm run watch` to automatically recompile TypeScript changes.
-
----
-
-## 🚀 Public Deployment
-
-### Chrome Web Store
-1. Zip the `cf-chrome-extractor` folder.
-2. Go to the [Chrome Developer Dashboard](https://chrome.google.com/webstore/devconsole/).
-3. Create a **New Item**, upload your `.zip`, add your generated icons, and submit for review.
-
-### VS Code Marketplace
-1. Install the publisher CLI: `npm install -g @vscode/vsce`
-2. Configure your `"publisher"`, `"icon"`, and `"repository"` in `cf-fetcher/package.json`.
-3. Login via terminal: `vsce login <your-publisher-name>`
-4. Inside `cf-fetcher`, run: `vsce publish`
 
 ---
 
