@@ -1,5 +1,11 @@
-out
-dist
-node_modules
-.vscode-test/
+# Dependencies
+node_modules/
+
+# Build outputs & artifacts
+out/
+dist/
 *.vsix
+
+# Testing & Logs
+.vscode-test/
+*.log

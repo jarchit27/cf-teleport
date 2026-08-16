@@ -1,8 +1,14 @@
 {
   "name": "cf-teleport",
   "displayName": "CF Teleport",
-  "description": "CF Teleport",
-  "version": "0.0.1",
+  "publisher": "cf-teleporter",
+  "icon": "icon.png",
+  "description": "Instantly teleport Codeforces problems, test cases, and Markdown previews directly into VS Code.",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jarchit27/cf-teleport"
+  },
   "engines": {
     "vscode": "^1.125.0"
   },

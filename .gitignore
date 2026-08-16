@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build outputs & artifacts
+out/
+dist/
+build/
+*.vsix
+*.zip
+
+# IDE & OS files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Logs & Environment
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+
+# Local problem storage / CPH test directory
+.cph/
